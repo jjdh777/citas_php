@@ -34,6 +34,10 @@
                             <label for="contrasenia" class="form-label">Contraseña</label>
                             <input type="password" class="form-control" name="contrasenia" id="contrasenia" placeholder="Ingrese su contraseña">
                         </div>
+                        <div class="mb-3">
+                            <label for="idFarmacia" class="form-label">Farmacia</label>
+                            <input type="text" class="form-control" name="idFarmacia" id="idFarmacia" placeholder="Ingrese el ID de la Farmacia">
+                        </div>
                         <button type="submit" class="btn btn-primary">Registrar</button>
                     </form>
                 </div>
@@ -65,6 +69,7 @@
                                 <th data-ordering="false">#</th>
                                 <th data-ordering="false">Nombres</th>
                                 <th data-ordering="false">Email</th>
+                                <th data-ordering="false">Farmacia</th>
                                 <th>Rol</th>
                                 <th>Action</th>
                             </tr>
@@ -75,6 +80,7 @@
                                     <td><?= $row['id']; ?></td>
                                     <td><?= $row['nombres']; ?> <?= $row['apellidos']; ?></td>
                                     <td><?= $row['email']; ?></td>
+                                    <td><?= $row['idFarmacia']; ?></td>
                                     <td>
                                         <?php if ($row['rol'] == 'Paciente') : ?>
                                             <span class="badge badge-soft-info"><?= $row['rol']; ?></span>

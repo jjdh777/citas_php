@@ -45,23 +45,23 @@ class UsuarioModel extends BD
         return $query->fetch(PDO::FETCH_ASSOC);
     }
 
-    public function create($rol, $email, $contrasenia,$dni=0, $nombres='', $apellidos='',  $telefono='', $genero='')
+    public function create($rol, $email, $contrasenia,$dni=0, $nombres='', $apellidos='',  $telefono='', $genero='', $idFarmacia='')
     {   
         $created_at = date('Y-m-d'); 
-        $query = $this->conexion()->prepare("INSERT INTO usuarios (rol, email, contrasenia,dni, nombres, apellidos, telefono, genero,created_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
-        $query->execute([$rol,   $email, $contrasenia,$dni, $nombres, $apellidos,  $telefono, $genero,$created_at ]);
+        $query = $this->conexion()->prepare("INSERT INTO usuarios (rol, email, contrasenia,dni, nombres, apellidos, telefono, genero,created_at,idFarmacia) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?,?)");
+        $query->execute([$rol,   $email, $contrasenia,$dni, $nombres, $apellidos,  $telefono, $genero,$created_at,$idFarmacia]);
         return $this->conexion()->lastInsertId();
     }
  
-    public function update($id,  $email, $contrasenia, $dni= 0, $nombres = '', $apellidos = '',   $telefono = '', $genero = '')
+    public function update($id,  $email, $contrasenia, $dni= 0, $nombres = '', $apellidos = '',   $telefono = '', $genero = '', $idFarmacia='')
     { 
         if ($contrasenia==''){ 
-            $query = $this->conexion()->prepare("UPDATE usuarios SET   email=?,   dni=?, nombres=?, apellidos=?,  telefono=?, genero=? WHERE id=?");
-            $query->execute([$email, $dni,$nombres, $apellidos,  $telefono, $genero, $id]);
+            $query = $this->conexion()->prepare("UPDATE usuarios SET   email=?,   dni=?, nombres=?, apellidos=?,  telefono=?, genero=?, idFarmacia=? WHERE id=?");
+            $query->execute([$email, $dni,$nombres, $apellidos,  $telefono, $genero,$idFarmacia, $id]);
             return $query->rowCount();    
         }else{
-            $query = $this->conexion()->prepare("UPDATE usuarios SET   email=?, contrasenia=?, dni=?, nombres=?, apellidos=?,  telefono=?, genero=? WHERE id=?");
-            $query->execute([ $email,  $contrasenia, $dni,$nombres, $apellidos,  $telefono, $genero,$id]);
+            $query = $this->conexion()->prepare("UPDATE usuarios SET   email=?, contrasenia=?, dni=?, nombres=?, apellidos=?,  telefono=?, genero=?, idFarmacia=? WHERE id=?");
+            $query->execute([ $email,  $contrasenia, $dni,$nombres, $apellidos,  $telefono, $genero, $idFarmacia,$id]);
             return $query->rowCount();    
         }
     } 
