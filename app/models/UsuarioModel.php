@@ -11,6 +11,7 @@ class UsuarioModel extends BD
     {
         $query = $this->conexion()->query("SELECT * FROM usuarios");
         return $query->fetchAll(PDO::FETCH_ASSOC);
+        
     }
 
     public function getByRolDESC($rol)
@@ -45,23 +46,23 @@ class UsuarioModel extends BD
         return $query->fetch(PDO::FETCH_ASSOC);
     }
 
-    public function create($rol, $email, $contrasenia,$dni=0, $nombres='', $apellidos='',  $telefono='', $genero='', $idFarmacia='',$fdn='')
+    public function create($rol, $email, $contrasenia,$dni=0, $nombres='', $apellidos='',  $telefono='', $genero='', $idFarmacia='')
     {   
         $created_at = date('Y-m-d'); 
-        $query = $this->conexion()->prepare("INSERT INTO usuarios (rol, email, contrasenia,dni, nombres, apellidos, telefono, genero,created_at,idFarmacia,fdn) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?,?,?)");
-        $query->execute([$rol,   $email, $contrasenia,$dni, $nombres, $apellidos,  $telefono, $genero,$created_at,$idFarmacia,$fdn]);
+        $query = $this->conexion()->prepare("INSERT INTO usuarios (rol, email, contrasenia,dni, nombres, apellidos, telefono, genero,created_at,idFarmacia) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?,?)");
+        $query->execute([$rol,   $email, $contrasenia,$dni, $nombres, $apellidos,  $telefono, $genero,$created_at,$idFarmacia]);
         return $this->conexion()->lastInsertId();
     }
  
-    public function update($id,  $email, $contrasenia, $dni= 0, $nombres = '', $apellidos = '',   $telefono = '', $genero = '', $idFarmacia='',$fdn='')
+    public function update($id,  $email, $contrasenia, $dni= 0, $nombres = '', $apellidos = '',   $telefono = '', $genero = '', $idFarmacia='')
     { 
         if ($contrasenia==''){ 
-            $query = $this->conexion()->prepare("UPDATE usuarios SET   email=?,   dni=?, nombres=?, apellidos=?,  telefono=?, genero=?, idFarmacia=? , fdn=? WHERE id=?");
-            $query->execute([$email, $dni,$nombres, $apellidos,  $telefono, $genero,$idFarmacia, $fdn,$id]);
+            $query = $this->conexion()->prepare("UPDATE usuarios SET   email=?,   dni=?, nombres=?, apellidos=?,  telefono=?, genero=?, idFarmacia=? WHERE id=?");
+            $query->execute([$email, $dni,$nombres, $apellidos,  $telefono, $genero,$idFarmacia,$id]);
             return $query->rowCount();    
         }else{
-            $query = $this->conexion()->prepare("UPDATE usuarios SET   email=?, contrasenia=?, dni=?, nombres=?, apellidos=?,  telefono=?, genero=?, idFarmacia=? , fdn=? WHERE id=?");
-            $query->execute([ $email,  $contrasenia, $dni,$nombres, $apellidos,  $telefono, $genero, $idFarmacia,$fdn, $id]);
+            $query = $this->conexion()->prepare("UPDATE usuarios SET   email=?, contrasenia=?, dni=?, nombres=?, apellidos=?,  telefono=?, genero=?, idFarmacia=?  WHERE id=?");
+            $query->execute([ $email,  $contrasenia, $dni,$nombres, $apellidos,  $telefono, $genero, $idFarmacia, $id]);
             return $query->rowCount();    
         }
     } 

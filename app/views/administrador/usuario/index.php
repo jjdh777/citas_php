@@ -6,6 +6,11 @@
 <?php $this->stop('style') ?>
 
 <?php $this->start('contenido') ?>
+
+<script>console.log('Hola, esto es una prueba desde index.php');</script>;
+<script>console.log($data);</script>;
+
+
 <!-- Modal -->
 <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
@@ -75,6 +80,7 @@
                             </tr>
                         </thead>
                         <tbody>
+                        
                             <?php foreach ($data as $row) : ?>
                                 <tr>
                                     <td><?= $row['id']; ?></td>
@@ -93,7 +99,13 @@
                                         <a href="<?= URL . 'usuario/destroy?id=' . $row['id'] ?>"><i class="mdi mdi-delete-forever-outline fs-4 text-primary"></i></a>
                                     </td>
                                 </tr>
-                            <?php endforeach; ?>
+                        
+                        
+                                <script>
+                                    console.log('IdFarmacia: <?= $row['idFarmacia']; ?>');
+                                </script>
+                        
+                                <?php endforeach; ?>
                         </tbody>
                     </table>
                 </div>

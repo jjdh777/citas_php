@@ -32,6 +32,7 @@ class PacienteController  extends Template
             $crecer=$_POST['crecer'] ;
             $telefono=$_POST['telefono'] ;
             $genero=$_POST['genero'];
+            
             ($_POST['contrasenia'] == null) ?  $contrasenia= null : $contrasenia=  password_hash($_POST['contrasenia'], PASSWORD_DEFAULT);
             (new UsuarioModel())->update($id,$usuario, $email, $contrasenia,$dni, $nombres, $apellidos, $crecer, $telefono, $genero,$fdn);   
           
