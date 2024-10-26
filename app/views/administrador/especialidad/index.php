@@ -20,7 +20,17 @@
                 <div class="mb-1">
                     <label for="nombre" class="form-label">Nombres</label>
                     <input type="text" class="form-control"  name="nombre" id="nombre" placeholder="Ingrese un especialidad" required>
+                    <input type="text" class="form-control" name="nombre2" id="nombre2" placeholder="Ingrese un especialidad" required>
+
+                    
+
                 </div>   
+                <div>
+                <input type="text" class="form-control"  name="notas" id="notas" placeholder="Ingrese las notas" required>
+                </div>
+                <div>
+                <input type="date" class="form-control"  name="f_alta" id="f_alta" placeholder="Ingrese la fecha de alta" required>
+                </div>
                 <button type="submit" class="btn btn-primary mt-1 float-end">Registrar</button>
             </form>
         </div> 
@@ -48,6 +58,9 @@
                             <tr> 
                                 <th data-ordering="false">#</th>
                                 <th data-ordering="false">ESPECALIDAD</th>   
+                                <th data-ordering="false">ESPECALIDAD</th>   
+                                <th data-ordering="false">NOTAS</th>   
+                                <th data-ordering="false">FECHA</th>   
                                 <th>ACCIONES</th>
                             </tr>
                         </thead>
@@ -56,6 +69,9 @@
                                 <tr>
                                     <td><?= $row['id']; ?></td>
                                     <td><?= $row['nombre']; ?></td>  
+                                    <td><?= $row['nombre2']; ?></td>  
+                                    <td><?= $row['notas']; ?></td>  
+                                    <td><?= $row['f_alta']; ?></td>  
                                     <td> 
                                         <a href="javascript:void(0)" onclick="Editar(<?= htmlspecialchars(json_encode($row)) ?>);" ><i class="mdi mdi-pencil-outline fs-4 text-primary"></i></a> 
                                         <a href="<?= URL.'especialidades/destroy?id='.$row['id']?>"><i class="mdi mdi-delete-forever-outline fs-4 text-primary"></i></a>

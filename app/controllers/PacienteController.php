@@ -33,7 +33,7 @@ class PacienteController  extends Template
             $telefono=$_POST['telefono'] ;
             $genero=$_POST['genero'];
             ($_POST['contrasenia'] == null) ?  $contrasenia= null : $contrasenia=  password_hash($_POST['contrasenia'], PASSWORD_DEFAULT);
-            (new UsuarioModel())->update($id,$usuario, $email, $contrasenia,$dni, $nombres, $apellidos, $crecer, $telefono, $genero);   
+            (new UsuarioModel())->update($id,$usuario, $email, $contrasenia,$dni, $nombres, $apellidos, $crecer, $telefono, $genero,$fdn);   
           
             back()->with('mensaje', 'datos actualizados correctamente')->redirect(); 
         }else{    
@@ -45,8 +45,9 @@ class PacienteController  extends Template
             $crecer=$_POST['crecer'] ;
             $telefono=$_POST['telefono'] ;
             $genero=$_POST['genero'];
+            $fdn=$_POST['fdn'];
             $contrasenia=  password_hash($_POST['contrasenia'], PASSWORD_DEFAULT);
-            (new UsuarioModel())->create('Paciente', $usuario, $email, $contrasenia,$dni, $nombres, $apellidos, $crecer, $telefono, $genero);   
+            (new UsuarioModel())->create('Paciente', $usuario, $email, $contrasenia,$dni, $nombres, $apellidos, $crecer, $telefono, $genero,$fdn);   
             back()->with('mensaje', 'se guardo correctamente')->redirect(); 
         }
     } 

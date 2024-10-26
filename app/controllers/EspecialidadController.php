@@ -16,18 +16,26 @@ class EspecialidadController extends Template
     function index()
     {  
         $user = (new EspecialidadModel())->getAll();    
+        echo("<script>console.log('PHP: " . $user . "');</script>");
         $this->render('administrador/especialidad/index', ['data' => $user]); 
+        
     } 
     function store()
     {     
         if (isset($_POST['id'])&& $_POST['id']>0) {  
             $id=$_POST['id'] ; 
             $nombre=$_POST['nombre'] ;
-            (new EspecialidadModel())->update($id,$nombre);   
+            $nombre2=$_POST['nombre2'] ;
+            $notas=$_POST['notas'] ;
+            $f_alta=$_POST['f_alta'] ;
+            (new EspecialidadModel())->update($id,$nombre,$nombre2,$notas,$f_alta);   
             return back()->redirect();
         }else{    
             $nombre=$_POST['nombre'] ;
-            (new EspecialidadModel())->create( $nombre);   
+            $nombre2=$_POST['nombre2'] ;
+            $notas=$_POST['notas'] ;
+            $f_alta=$_POST['f_alta'] ;
+            (new EspecialidadModel())->create( $nombre,$nombre2,$notas,$f_alta);   
             return back()->redirect();
         }
     } 

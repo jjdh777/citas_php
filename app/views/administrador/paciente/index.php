@@ -67,6 +67,12 @@
                     <label for="contrasenia" class="form-label">Contraseña</label>
                     <input type="password" class="form-control" name="contrasenia" id="contrasenia" placeholder="Ingrese su contraseña">
                 </div>  
+              
+                <div class="mb-1">
+                    <label for="fdn" class="form-label">FDN</label>
+                    <input type="text" class="form-control" name="fdn" id="fdn" placeholder="Ingrese su FDN">
+                </div>  
+              
                 <button type="submit" class="btn btn-primary mt-1 float-end">Registrar</button>
             </form>
         </div> 
@@ -115,6 +121,7 @@
                                 <th data-ordering="false">TELEFONO</th>
                                 <th data-ordering="false">SEXO</th>
                                 <th data-ordering="false">CORREO</th> 
+                                <th data-ordering="false">FDN</th> 
                                 <th>ACCIONES</th>
                             </tr>
                         </thead>
@@ -126,6 +133,7 @@
                                     <td><?= $row['telefono']; ?></td>  
                                     <td><?= $row['genero']; ?></td>  
                                     <td><?= $row['email']; ?></td>  
+                                    <td><?= $row['fdn']; ?></td>  
                                     <td> 
                                         <a href="javascript:void(0)" onclick="Editar(<?= htmlspecialchars(json_encode($row)) ?>);" ><i class="mdi mdi-pencil-outline fs-4 text-primary"></i></a> 
                                         <a href="<?= URL.'usuario/destroy?id='.$row['id']?>"><i class="mdi mdi-delete-forever-outline fs-4 text-primary"></i></a>

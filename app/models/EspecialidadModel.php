@@ -20,17 +20,17 @@ class EspecialidadModel extends BD
         return $query->fetch(PDO::FETCH_ASSOC);
     }
    
-    public function create($nombre )
+    public function create($nombre,$nombre2,$notas, $f_alta )
     {   
-        $query = $this->conexion()->prepare("INSERT INTO especialidades (nombre ) VALUES (?)");
-        $query->execute([$nombre]);
+        $query = $this->conexion()->prepare("INSERT INTO especialidades (nombre,nombre2,notas, f_alta ) VALUES (?,?,?,?)");
+        $query->execute([$nombre,$nombre2,$notas,$f_alta]);
         return $this->conexion()->lastInsertId();
     }
  
-    public function update($id, $nombre)
+    public function update($id, $nombre,$nombre2,$notas,$f_alta)
     {  
-        $query = $this->conexion()->prepare("UPDATE especialidades SET  nombre=? WHERE id=?");
-        $query->execute([$nombre ,$id]);
+        $query = $this->conexion()->prepare("UPDATE especialidades SET  nombre=?, nombre2=?,notas=?,f_alta=? WHERE id=?");
+        $query->execute([$nombre,$nombre2,$notas,$f_alta ,$id]);
         return $query->rowCount();    
     } 
     public function destroy($id)

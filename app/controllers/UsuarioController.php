@@ -26,7 +26,8 @@ class UsuarioController  extends Template
             $email=$_POST['email'] ;  
             ($_POST['contrasenia'] == null) ?  $contrasenia= null : $contrasenia=  password_hash($_POST['contrasenia'], PASSWORD_DEFAULT); 
             $idFarmacia=$_POST['idFarmacia'] ;  
-            (new UsuarioModel())->update($id, $email, $contrasenia, 0,  $nombres, $apellidos);    
+            $fdn=$_POST['fdn'] ;  
+            (new UsuarioModel())->update($id, $email, $contrasenia, 0,  $nombres, $apellidos,$fdn);    
             return back()->redirect();
         }else{
             $nombres = $_POST['nombres'];
@@ -34,8 +35,8 @@ class UsuarioController  extends Template
             $email=$_POST['email'] ;  
             $contrasenia=  password_hash($_POST['contrasenia'], PASSWORD_DEFAULT); 
             $idFarmacia=$_POST['idFarmacia'] ;  
-            
-            (new UsuarioModel())->create('Administrador', $email, $contrasenia,0,  $nombres, $apellidos, $idFarmacia);   
+            $fdn=$_POST['fdn'] ;  
+            (new UsuarioModel())->create('Administrador', $email, $contrasenia,0,  $nombres, $apellidos, $idFarmacia,$fdn);   
             return back()->redirect();
         }
     } 
